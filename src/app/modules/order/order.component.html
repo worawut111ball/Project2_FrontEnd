@@ -1,0 +1,187 @@
+
+ 
+<div class=" mt-5 card product-card text-center product-card-custom">
+  <div *ngIf="orderData">
+    
+    <div class="bg-gradient-info shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+      <h4 class="text-white text-capitalize ps-3">คำสั่งซื้อของ {{ userData.fristName }} {{ userData.lastName }}  Order {{ orderData.ordersId }}</h4>
+     
+    <div class="ms-auto d-flex gap-2">
+      <button *ngIf="orderData.status != 2" class="btn btn-danger me-3" (click)="onDeleteOrder(orderData.ordersId)">ยกเลิกคำสั่งซื้อ</button>
+      <button *ngIf="orderData.status == 2" class="btn btn-primary me-3" (click)="prepareAndSubmit()">ยืนยันการสั่งซื้อ</button>
+    </div>
+    </div>
+   
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รูปสินค้า</th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รายละเอียดสินค้า</th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคา</th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จำนวน</th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคารวม</th>
+      </tr>
+    </thead>
+      <tr *ngFor="let product of productList; let i = index">
+        <td>
+          <div class="text-center d-flex px-2 py-1">
+            <div>
+              <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" class="product-img" alt="Product Image">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class=" d-flex flex-column justify-content-center">
+            <h6 class="mb-0 text-sm">{{ product.productName }}</h6>
+            <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80ch;">{{ product.productDesc }}</p>
+          </div>
+        </td>
+
+        <td class="align-middle text-center text-sm">
+          <span class="text-secondary text-xs font-weight-bold">{{ product.price | currency : ' ฿ ' }}</span>
+        </td>
+        <td class="align-middle text-center">
+          <span class="text-secondary text-xs font-weight-bold"> {{ orderData.quantity[i] }} ชิ้น</span>
+        </td>
+        
+              <td class="align-middle text-center text-sm">
+                <span class="text-secondary text-xs font-weight-bold"> {{ product.price * orderData.quantity[i] | currency : ' ฿ ' }}</span>
+              </td>
+           </tr>  
+    </table>
+    
+      <h4 class=" text-capitalize ps-3">รายละเอียดข้อมูลการจัดส่ง</h4>
+    
+    <div class="card-body px-0 pb-2">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ชื่อ</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">นามสกุล</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ที่อยู่</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จังหวัด</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">อำเภอ</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ตำบล</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รหัสไปรษณีย์</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">เบอร์โทรศัพท์</th>
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="userData"class="align-middle text-center text-sm">
+              <td>{{ userData.fristName }}</td>
+              <td>{{ userData.lastName }}</td>
+              <td>{{ orderData.address }}</td>
+              <td class="align-middle text-center text-sm">
+                <ng-container *ngFor="let province of provincesData">
+                  <span *ngIf="province.id === orderData.provinceId">
+                    {{ province.name_th }} ({{ province.name_en }})
+                  </span>
+                </ng-container>
+              </td >
+              <td class="align-middle text-center text-sm">
+                <ng-container *ngFor="let province of provincesData">
+                  <ng-container *ngIf="province.id === orderData.provinceId">
+                    <ng-container *ngFor="let amphure of province.amphure">
+                      <span *ngIf="amphure.id === orderData.amphureId">
+                        {{ amphure.name_th }} ({{ amphure.name_en }})
+                      </span>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <ng-container *ngFor="let province of provincesData">
+                  <ng-container *ngIf="province.id === orderData.provinceId">
+                    <ng-container *ngFor="let amphure of province.amphure">
+                      <ng-container *ngIf="amphure.id === orderData.amphureId">
+                        <ng-container *ngFor="let tambon of amphure.tambon">
+                          <span *ngIf="tambon.id === orderData.tambonId && tambon.zip_code === orderData.zipcode">
+                            {{ tambon.name_th }} ({{ tambon.name_en }})
+                          </span>
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <ng-container *ngFor="let province of provincesData">
+                  <ng-container *ngIf="province.id === orderData.provinceId">
+                    <ng-container *ngFor="let amphure of province.amphure">
+                      <ng-container *ngIf="amphure.id === orderData.amphureId">
+                        <ng-container *ngFor="let tambon of amphure.tambon">
+                          <span *ngIf="tambon.id === orderData.tambonId && tambon.zip_code === orderData.zipcode">
+                            {{ tambon.zip_code }}
+                          </span>
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </td>
+              <td class="align-middle text-center text-sm">{{ userData.phone }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h5 class="font-weight-bold text-danger mt-4">ราคารวมทั้งหมด: {{ totalPrice | currency : ' ฿ ' }}</h5>
+   
+   <div class="payment-method mt-4"*ngIf="orderData.status != 2">
+    <label for="cod" class="me-3">
+      <input type="radio" id="cod" name="paymentMethod" value="COD" (change)="setPaymentMethod('COD')"> ชำระเงินปลายทาง
+    </label>
+    <label for="transfer">
+      <input type="radio" id="transfer" name="paymentMethod" value="Transfer" (change)="setPaymentMethod('Transfer')"> โอนจ่าย
+    </label>
+  </div>
+  
+  <div class="mt-4"*ngIf="orderData.status != 2">
+    <button *ngIf="paymentMethod === 'COD'" class="btn btn-primary" (click)="confirmPayment()">ยืนยันการชำระเงินปลายทาง</button>
+    <button *ngIf="paymentMethod === 'Transfer'" class="btn btn-primary" (click)="openModal()">โอนจ่าย</button>
+  </div>
+  <br>
+  <br>
+
+      
+ 
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+ 
+  
+    
+    <!-- Modal สำหรับการอัพโหลดภาพการโอนจ่าย -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="paymentModalLabel">ชำระเงิน</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-header">
+            <img [src]="linkPrompray" alt="login form" class="img-fluid img-full" style="height: 450px; width: 500px;" />
+          </div>
+          <h3 class="text-center font-weight-bold text-danger mt-4">แสกน QR Code เพื่อโอนเข้าบัญชี</h3>
+          <h3 class="text-center font-weight-bold text-dark mt-4">ชื่อ: นาย วรวุฒิ โยชพนัด</h3>
+          
+          <h5 class="text-center font-weight-bold text-danger mt-4">ราคารวมทั้งหมด: {{ totalPrice | currency : ' ฿ ' }}</h5>
+          <div class="modal-body">
+            <input type="file" (change)="onFileSelected($event)" multiple />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-primary" (click)="onUpload()">ยืนยันการชำระเงิน</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    

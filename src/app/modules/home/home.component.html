@@ -1,0 +1,81 @@
+
+
+
+ <div style="width: 100% ">
+  <div style=" background-image: url('https://static.homepro.co.th/custompage/wm_samsung_ai/20240607-173230410-20240601_clp_Samsung_HomePro_1920x300_th.jpg'); height: 300px; " >
+  </div>
+</div>
+
+<h1 class="container text-blue-600 text-bold  mt-5">สินค้าทั้งหมด</h1>
+<br>
+<div class="container mt-2">
+  <div class="row">
+    
+    <ng-container *ngFor="let product of productList">
+
+      <div class="col-2 mb-4">
+        <div class="card product-card">
+          <a (click)="setSelectedProduct(product)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" class="card-img-top" alt="Product Image">
+          </a>
+
+
+          <div class="card-body">
+            <h6>{{ product.productName }}</h6>
+            <p>{{ product.productDesc }}</p>
+            <p class="card-text text-danger font-weight-bold">ราคา {{ product.price | currency : " ฿ " }}</p>
+            <button *ngIf="!userDetail" class="btn btn-dark" (click)="onCart(product.productId)">
+              <i style="font-size: 20px;" class="fas fa-cart-plus"></i>
+            </button>
+            <button class="btn btn-dark" *ngIf="userDetail" (click)="addtoCart(product)">
+              <i style="font-size: 20px;" class="fas fa-cart-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+
+<div class="modal fade pt-8" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-width">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">{{ selectedProduct?.productName }}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex flex-column align-items-center">
+        <div *ngIf="selectedProduct?.imgList.length > 0" class="mb-3">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-interval="false" style="width: 500px; height: 500px;">
+            <div class="carousel-inner">
+              <div *ngFor="let img of selectedProduct?.imgList; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+                <img [src]="img" class="d-block w-100 h-100" alt="Product Image" style="object-fit: cover;">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              
+            </a>
+          </div>
+        </div>
+        <div class="modal-body-content w-100 text-center">
+          <h4 class="modal-title">{{ selectedProduct?.productName }}</h4><br>
+          <p  style="font-size: 16px;">{{ selectedProduct?.productDesc }}</p><br>
+          <p style="font-size: 30px;" class="card-text text-danger font-weight-bold">{{ selectedProduct?.price | currency : "฿" }}</p>
+        </div>
+      </div>
+      <div class="modal-footer w-100 d-flex justify-content-center">
+        <button style="font-size: 20px;" type="button" *ngIf="userDetail" class="btn btn-dark" (click)="addtoCart(selectedProduct)">
+          <i style="font-size: 20px;" class="fas fa-cart-plus text-white"></i> เพิ่มเข้าตะกร้า
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

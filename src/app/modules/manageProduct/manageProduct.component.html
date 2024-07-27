@@ -1,0 +1,64 @@
+<div class="product-card-custom">
+  <div class="row">
+    <div class="col-12">
+      <div class="card ">
+
+        <div class="bg-gradient-info shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+          <h6 class="text-white text-capitalize ps-3">จัดการสินค้า</h6>
+            <a class="btn bg-gradient-success me-3 " [routerLink]="['/product']">
+              <i class="material-icons text-sm">add</i>เพิ่มสินค้า
+            </a>
+        </div>
+
+       
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รูปสินค้า</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รายละเอียดสินค้า</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ประเภทสินค้า</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคา</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จำนวน</th>
+                  <th class="text-secondary opacity-7"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of productList">
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div>
+                        <img *ngFor="let productImg of product.imgList" [src]="productImg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">{{ product.productName }}</h6>
+                      <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50ch;">{{ product.productDesc }}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">
+                      {{ product.productType[0]?.productTypeName || '' }}
+                    </p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="text-secondary text-danger text-xs font-weight-bold">{{ product.price | currency: '฿ ' }}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{ product.quantity }} ชิ้น</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <button class="btn btn-warning" *ngIf="userDetail?.roleId === 1" (click)="onUpdateProduct(product.productId)">แก้ไข</button>
+                    <button class="btn btn-danger" *ngIf="userDetail?.roleId === 1" (click)="onDeleteProduct(product.productId)">ลบ</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

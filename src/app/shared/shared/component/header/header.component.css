@@ -1,0 +1,22 @@
+
+.cart {
+    padding-left: 20px;
+}
+header{
+   
+    font-family: "Prompt", sans-serif;
+}
+.badge.bg-danger {
+    background-color: #dc3545; /* Red background for danger */
+    color: white; /* White text for better contrast */
+    font-size: 12px; /* Adjust font size as needed */
+    padding: 3px 6px; /* Adjust padding for better fit */
+  }
+
+  .profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid #ffffff; /* กำหนดสีกรอบ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+  }

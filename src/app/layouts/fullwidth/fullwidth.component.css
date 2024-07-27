@@ -1,0 +1,15 @@
+
+
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  /* .content {
+    padding: 20px;
+  } */
+  .content-body{
+    background:rgba(148, 165, 173, 0.438) ;
+    font-family: "Prompt", sans-serif;
+  }

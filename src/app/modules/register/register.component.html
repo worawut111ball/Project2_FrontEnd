@@ -1,0 +1,90 @@
+
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+	<div class="container py-5 h-100">
+	  <div class="row d-flex justify-content-center align-items-center h-100">
+		<div class="col">
+		  <div class="card card-registration my-4">
+			<div class="row g-0">
+			  <div class="col-xl-6 d-none d-xl-block">
+				<br><br><br><br><br><br><br>
+				<img src="assets/Kitchen-Appliances-PNG.png"
+				  alt="Sample photo" class="img-fluid"
+				  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+			  </div>
+			 
+			  <div class="col-xl-6">
+				<div class="card-body p-md-5 text-black">
+				  <h3 class="mb-5 text-uppercase">แบบฟอร์มลงทะเบียน</h3>
+  
+				  <div class="row">
+					<div class="col-md-6 mb-4">
+					  <div data-mdb-input-init class="form-outline">
+						<input formControlName="fristName" type="text" id="form3Example1m" class="form-control form-control-lg" placeholder="Frist name" />
+						<label class="form-label" for="form3Example1m">ชื่อ</label>
+						
+					  </div>
+					</div>
+					<div class="col-md-6 mb-4">
+					  <div data-mdb-input-init class="form-outline">
+						<input formControlName="lastName" type="text" id="form3Example1n" class="form-control form-control-lg" placeholder="Last name" />
+						<label class="form-label" for="form3Example1n">นามสกุล</label>
+						
+					  </div>
+					</div>
+				  </div>
+  
+				  <div class="row">
+					<div class="col-md-6 mb-4">
+					  <div data-mdb-input-init class="form-outline">
+						<input formControlName="phone"  placeholder="Phone number" type="text" id="form3Example1m1" class="form-control form-control-lg" />
+						<label class="form-label" for="form3Example1m1">เบอร์โทรศัพท์</label>
+						
+					  </div>
+					</div>
+					<div class="col-md-6 mb-4">
+					  <div data-mdb-input-init class="form-outline">
+						<input formControlName="age" type="text" id="form3Example1n1" placeholder="Age"  class="form-control form-control-lg" />
+						<label class="form-label" for="form3Example1n1">อายุ</label>
+						
+					  </div>
+					</div>
+				  </div>
+  
+				  <div data-mdb-input-init class="form-outline mb-4">
+					<input formControlName="userName" type="text" id="form3Example8" placeholder="username" class="form-control form-control-lg" />
+					<label  class="form-label" for="form3Example8">ชื่อผู้ใช้</label>
+					
+				  </div>
+  
+				  <div data-mdb-input-init class="form-outline mb-4">
+					<input formControlName="password"type="password" id="form3Example9"placeholder="Create password" class="form-control form-control-lg" />
+					<label class="form-label" for="form3Example9">รหัสผ่าน</label>
+					
+				  </div>
+  
+				  <div data-mdb-input-init class="form-outline mb-4">
+					<input formControlName="confirmPassword"  type="password" id="form3Example90"placeholder="Repeat password" class="form-control form-control-lg" />
+					<label class="form-label" for="form3Example90">ยืนยันรหัสผ่าน</label>
+				
+				  </div>
+  
+				<div>
+					<p *ngIf="isPassword">กรุณากรอกใหม่อีกครั้ง</p>
+				</div>
+  
+				 
+				<div class="d-flex justify-content-end pt-3">
+					<button type="submit" [disabled]="registerForm.invalid" class="btn btn-warning btn-lg ms-2">ลงทะเบียน</button>
+				  </div>
+						
+				</div>
+			  </div>
+		
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+</form>

@@ -1,0 +1,5 @@
+/* ตัวอย่างในไฟล์ CSS ของ Component */
+.container, .card-body, .form-group, label, input, select, button, .alert {
+    font-family: 'Prompt', sans-serif;
+  }
+  

@@ -1,0 +1,47 @@
+
+
+      .empty-cart{ font-family: 'Prompt', sans-serif;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       text-align: center;
+       transform: translate(-50%,-50%);
+     } 
+     h4,h6{
+        font-weight: 500;
+     } 
+     
+     .card .btn{
+        font-size: 14px !important;
+        margin-top: 20px !important;
+        font-weight: 400;
+        padding: 12px 75px;
+        border-radius: 3px !important;
+     } 
+
+     body {
+      font-family: 'Prompt', sans-serif;
+    }
+  
+    /* หรือตามที่ต้องการใช้ในส่วนที่เฉพาะเฉพาะ */
+    .card-body,
+    .form-label,
+    .btn,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    input,
+    empty-cart {
+      font-family: 'Prompt', sans-serif;
+    }
+  
+    .quantity {
+      width: 10em; /* ปรับขนาดตามที่คุณต้องการ */
+  }
+  .minus,
+  .plus {
+      font-size: 0.7rem; /* ปรับขนาดเล็กลง */
+      padding: 0.2rem 0.4rem; /* ปรับระยะห่างขอบ */
+  }

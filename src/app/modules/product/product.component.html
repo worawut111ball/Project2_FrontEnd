@@ -1,0 +1,58 @@
+<div class="container mt-5 ">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">สินค้า</h4>
+          <form [formGroup]="productForm" (submit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label for="productTypeId" class="form-label">ประเภทสินค้า</label>
+              <select class="form-select" formControlName="productTypeId">
+                <option value="">======== กรุณาเลือก ========</option>
+                <option *ngFor="let item of productTypeList" [value]="item.productTypeId">{{ item.productTypeName }}</option>
+              </select>
+            </div>
+            <div class="form-group mb-3">
+              <label for="productName" class="form-label">ชื่อสินค้า</label>
+              <input formControlName="productName" placeholder="ชื่อสินค้า" class="form-control" type="text" required>
+              <div *ngIf="productForm.controls['productName'].invalid && (productForm.controls['productName'].dirty || productForm.controls['productName'].touched || isSubmit)" class="alert alert-danger mt-2">
+                *** กรุณากรอกข้อมูล ชื่อสินค้า
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="productDesc" class="form-label">รายละเอียดสินค้า</label>
+              <input formControlName="productDesc" placeholder="รายละเอียดสินค้า" class="form-control" type="text" required>
+              <div *ngIf="productForm.controls['productDesc'].invalid && (productForm.controls['productDesc'].dirty || productForm.controls['productDesc'].touched || isSubmit)" class="alert alert-danger mt-2">
+                *** กรุณากรอกข้อมูล รายละเอียดสินค้า
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="price" class="form-label">ราคา</label>
+              <input formControlName="price" step="0.01" placeholder="ราคา" class="form-control" type="number" (change)="fixDecimals()" pattern="^[0-9]+(\.[0-9]{1,2})?" required>
+              <div *ngIf="productForm.controls['price'].invalid && (productForm.controls['price'].dirty || productForm.controls['price'].touched || isSubmit)" class="alert alert-danger mt-2">
+                *** กรุณากรอกข้อมูล ราคา
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="quantity" class="form-label">จำนวน</label>
+              <input formControlName="quantity" placeholder="จำนวน" class="form-control" type="number" required>
+              <div *ngIf="productForm.controls['quantity'].invalid && (productForm.controls['quantity'].dirty || productForm.controls['quantity'].touched || isSubmit)" class="alert alert-danger mt-2">
+                *** กรุณากรอกข้อมูล จำนวน
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              <label for="age" class="form-label">รูปสินค้า</label>
+              <input formControlName="files" #fileInput (change)="onFileChanged($event)" placeholder="รูปสินค้า" class="form-control" type="file" multiple required>
+              <div *ngIf="productForm.controls['files'].invalid && (productForm.controls['files'].dirty || productForm.controls['files'].touched || isSubmit)" class="alert alert-danger mt-2">
+                *** กรุณาใส่ รูปสินค้า
+              </div>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Save Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

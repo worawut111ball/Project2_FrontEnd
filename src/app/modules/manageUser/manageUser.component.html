@@ -1,0 +1,84 @@
+<div class="product-card-custom">
+  <div class="">
+    <div class="row">
+      <div class="col-12">
+        <div class="card ">
+        
+            <div class="bg-gradient-info shadow-dark border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">จัดการผู้ใช้</h6>
+            </div>
+          
+        
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ชื่อ</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">นามสกุล</th>
+                    <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">สถานะ</th> -->
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">เบอร์ติดต่อ</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">อายุ</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of userList; let i = index">
+                    <td>
+                      <div class="align-middle text-center">
+                        {{i+1}}
+                      </div>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="text-xs font-weight-bold mb-0">{{item.fristName}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="text-xs font-weight-bold mb-0">{{item.lastName}}</p>
+                    </td>
+                    <!-- <td class="align-middle text-center text-sm">
+                      <span *ngIf="item.status == '1'" class="badge badge-sm bg-gradient-success">ปกติ</span>
+                      <span *ngIf="item.status != '1'" class="badge badge-sm bg-gradient-danger">ผิดปกติ</span>
+                    </td> -->
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{item.phone}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{item.age}} ปี</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <button class="btn btn-warning" (click)="onUpdateUser(item.userId)">แก้ไข</button>
+                      <button class="btn btn-danger" (click)="onDeleteUser(item.userId)">ลบ</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,114 @@
+
+<div class=" mt-5 product-card-custom">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="bg-gradient-info shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+          <h4 class="text-white text-capitalize ps-3">{{ title }}</h4>
+        </div>
+        <form method="post" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+          <div class="card-body">
+            <div class="row ">
+              <div class="col-md-4">
+                <div class="profile-img text-center mb-4  mt-6">
+                  <div class="form-group row" *ngFor="let item of ImageList">
+                    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+                      <img [src]="item.value" class="d-block img-thumbnail me-3" alt="Profile Image" />
+                      <button type="button" class="btn btn-danger btn-close" aria-label="Close" (click)="onDeleteFileChanged(item.key)">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div  class="file btn btn-lg btn-primary"*ngIf="ImageList.length == 0">
+                    อัพโหลดรูปภาพ
+                    <input formControlName="files" #fileInput (change)="onFileChanged($event)" placeholder="รูปสินค้า" class="form-control mt-2" type="file" multiple required />
+                    <div *ngIf="updateForm.controls['files'].invalid && (updateForm.controls['files'].dirty || updateForm.controls['files'].touched || isSubmit)" class="alert alert-danger mt-2">
+                      *** กรุณาใส่รูปภาพ
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="profile-head">
+                  <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active">About</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-content profile-tab">
+                  <div class="tab-pane fade show active">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="select">Role Name</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <select class="custom-select" formControlName="roleId" readonly>
+                          <option *ngFor="let item of roleList" value="{{ item.id }}" [disabled]="true" readonly>{{ item.roleName }}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="name">First Name</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input formControlName="fristName" placeholder="First Name" class="form-control here" type="text" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="lastname">Last Name</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input formControlName="lastName" placeholder="Last Name" class="form-control here" type="text" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="text">Phone</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input formControlName="phone" placeholder="Phone" class="form-control here" required="required" type="text" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="age">Age</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input formControlName="age" placeholder="Age" class="form-control here" required="required" type="text" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="username">User Name</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input formControlName="userName" placeholder="Username" class="form-control here" required="required" type="text" readonly />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="password">Password</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input formControlName="password" placeholder="Password" class="form-control here" type="password" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <input name="submit" type="submit" class="profile-edit-btn btn-success" value="Edit Profile" />
+              </div>
+            </div>
+            <br><br>
+            <br> 
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

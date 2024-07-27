@@ -1,0 +1,11 @@
+.img-full {
+  height: 100%;
+  width:100%;
+  object-fit: none;
+  border-radius: 1rem 0 0 1rem;
+}
+
+/* ตัวอย่างในไฟล์ CSS ของ Component */
+body, h1, h2, h3, h4, h5, h6, p, button, form, input, label, .container, .row, .card, .form-outline, a {
+  font-family: 'Prompt', sans-serif;
+}

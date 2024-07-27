@@ -1,0 +1,5 @@
+/* ตัวอย่างในไฟล์ CSS ของ Component */
+.col-xl-12, .row, .card, .card-header, .card-body, .icon, h6, span, button {
+    font-family: 'Prompt', sans-serif;
+  }
+  .body{padding: 20px;}

@@ -1,0 +1,44 @@
+.order-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 15px;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.product-img {
+  width: 100px;
+  height: auto;
+}
+
+h2, h3 {
+  margin-top: 0;
+}
+/* .product-card-custom {
+  padding: 10px;
+  margin: 50px;
+  height: 700px;
+} */
+
+
+    /* ตัวอย่างในไฟล์ CSS ของ Component */
+  *{
+    font-family: 'Prompt', sans-serif;
+  }
